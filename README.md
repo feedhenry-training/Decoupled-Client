@@ -7,9 +7,11 @@ Don't forget the .gitignore file into your new repo - it contains some important
 You'll need to include the feedhenry JS SDK and init it, as in index.html - remember to switch to targeting live cloud code in release (see index.html). You might want to rename the native projects - at the moment it's called 'Decoupled'. Especially the product name, as that shows up on device once installed.  
 
 # Usage
-To copy the files into the native projects  
-1.  npm install -g grunt # install grunt globally  
-2.  grunt build # run this from the root of the project to copy the contents of client/default/* to the respective directories  
+To copy the files into the native projects 
+1.  npm uninstall -g grunt # remove previous version of grunt if any 
+2.  npm install -g grunt-cli # install grunt cli globally  
+3.  npm install . # run this from the root of the project to install required dependencies locally 
+4.  grunt build # run this from the root of the project to copy the contents of client/default/* to the respective directories  
 Then, to run the project, open the Xcode project in XCode, and add the android project in Eclipse as an existing project.  
 
 # Support
