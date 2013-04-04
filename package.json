@@ -5,6 +5,7 @@
   "description": "Decoupled builds using Phonegap SDK.",
   "dependencies": {},
   "devDependencies": {
+    "grunt": "~0.4.1",
     "grunt-contrib-clean": "0.3.x",
     "grunt-contrib-copy": "0.3.x"
   },
