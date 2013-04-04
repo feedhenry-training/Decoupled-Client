@@ -63,7 +63,7 @@
     }
 
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
-    screenBounds.size.height = screenBounds.size.height
+    screenBounds.size.height = screenBounds.size.height;
     self.window = [[[UIWindow alloc] initWithFrame:screenBounds] autorelease];
     self.window.autoresizesSubviews = YES;
 
