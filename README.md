@@ -19,9 +19,9 @@ Then, to run the project, open the Xcode project in XCode, and add the android p
 To init the FH JS sdk you must update $fh.init inside [`index.html`](https://github.com/learnhenry/Decoupled-Client/blob/master/client/default/index.html)  
 
 The options you need to change are:  
-host - Host to use, i.e. https://apps.feedhenry.com  
-appid - Your App ID, used to identify your app.  
-appkey - Your App API Key  
+*host* - Host to use, i.e. https://apps.feedhenry.com  
+*appid* - Your App ID, used to identify your app.  
+*appkey* - Your App API Key  
 
 You can collect all this information from the details section of your app in the app studio.  
 
