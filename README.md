@@ -1,4 +1,5 @@
-![FeedHenry](http://www.feedhenry.com/wp-content/themes/feedhenry/images/logo.gif) # Decoupled Builds
+![FeedHenry](http://www.feedhenry.com/wp-content/themes/feedhenry/images/logo.gif) 
+# Decoupled Builds
 This project shows the project layout used for building a FeedHenry application decoupled from the build farm using native SDK's for Cordova.
 
 # Porting to your project
@@ -17,9 +18,9 @@ Then, to run the project, open the Xcode project in XCode, and add the android p
 # Init FH JS SDK
 To init the FH JS sdk you must update $fh.init inside [`index.html`](https://github.com/learnhenry/Decoupled-Client/blob/master/client/default/index.html)  
 
-The options you need to change are:
-host - Host to use, i.e. https://apps.feedhenry.com
-appid - Your App ID, used to identify your app.
+The options you need to change are:  
+host - Host to use, i.e. https://apps.feedhenry.com  
+appid - Your App ID, used to identify your app.  
 appkey - Your App API Key  
 
 You can collect all this information from the details section of your app in the app studio.  
@@ -38,8 +39,8 @@ $fh.init({
   });
 ```
 
-To read more about $fh.init please vist
-[our docs site](http://docs.feedhenry.com/v2/api_js_client_api.html#$fh.init).
+To read more about $fh.init please vist our
+[docs site](http://docs.feedhenry.com/v2/api_js_client_api.html#$fh.init).
 
 # Support
 This project has been tested on OSX in part on Windows - it should support both.  
