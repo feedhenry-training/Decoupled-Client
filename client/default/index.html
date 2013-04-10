@@ -13,8 +13,8 @@
           // Init the FH JS SDK
           $fh.init({
             "host": "https://psdev.feedhenry.com",
-            "appid": "14twuImR0__Kpeu7Odhgom1l",
-            "appkey": "9f4486059cbaee9edf11aa54ac91857359dbca6e",
+            "appid": "tW5zCC9ZBF5vdQWgd2En2pt4",
+            "appkey": "6c1c58dba74fc64d1ba56d3c954b268248ce7104",
             "mode" : "dev"
           }, function(res) {
             alert(JSON.stringify(res));
@@ -27,7 +27,8 @@
           function doAct(){
             $fh.act(
                 {
-                  act: 'getConfig'
+                  act: "echo",
+                  req : { "echo" : 'Hello World' }
                 }, function(res){
                   alert(JSON.stringify(res));
                 }, function(err){
@@ -36,8 +37,9 @@
             )
           }
         </script>
-<body>
-    <h1>Decoupled Client hello world</h1>
-    <button onclick="doAct">Do an act!</button>
-</body>
+    </head>
+    <body>
+        <h1>Decoupled Client hello world</h1>
+        <h2><a href="Javascript: doAct();">Do an act!</a></h2>
+    </body>
 </html>
