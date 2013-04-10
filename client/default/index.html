@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="style.css" type="text/css">
         <script src="cordova-2.2.0.js"></script>
         <script src="js/feedhenry.js"></script>
+        <script src="js/barcodescanner.js"></script>
         <meta charset="UTF-8">
         <title>Decoupled Build </title>
         <script>
@@ -22,6 +23,19 @@
             alert(msg + JSON.stringify(err));
           });
 
+          function scanBarcode(){
+            window.plugins.barcodeScanner.scan(
+                    function(result) {
+                      if (result.cancelled)
+                        alert("the user cancelled the scan")
+                      else
+                        alert("we got a barcode: " + result.text)
+                    },
+                    function(error) {
+                      alert("scanning failed: " + error)
+                    }
+            );
+          }
 
 
           function doAct(){
@@ -39,7 +53,7 @@
         </script>
     </head>
     <body>
-        <h1>Decoupled Client hello world</h1>
+        <h1>New Application Title</h1>
         <h2><a href="Javascript: doAct();">Do an act!</a></h2>
-    </body>
+        <h2><a href="Javascript: scanBarcode();">Scan Barcode!</a></h2>    </body>
 </html>

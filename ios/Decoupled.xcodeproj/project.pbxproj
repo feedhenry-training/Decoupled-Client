@@ -42,6 +42,11 @@
 		30A0434914DC770100060A13 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 30A0434614DC770100060A13 /* Localizable.strings */; };
 		30E1352710E2C1420031B30D /* Cordova.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30E1352610E2C1420031B30D /* Cordova.plist */; };
 		30E5649213A7FCAF007403D8 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30E5649113A7FCAF007403D8 /* CoreMedia.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		B173D7A31715F77000E3504C /* CDVBarcodeScanner.mm in Sources */ = {isa = PBXBuildFile; fileRef = B173D7A01715F77000E3504C /* CDVBarcodeScanner.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B173D7A41715F77000E3504C /* zxing-all-in-one.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B173D7A11715F77000E3504C /* zxing-all-in-one.cpp */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		B173D7A61715F83400E3504C /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B173D7A51715F83400E3504C /* AssetsLibrary.framework */; };
+		B173D7A81715F83D00E3504C /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B173D7A71715F83D00E3504C /* CoreVideo.framework */; };
+		B173D7AA1715F84900E3504C /* libiconv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = B173D7A91715F84900E3504C /* libiconv.dylib */; };
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +108,12 @@
 		30E5649113A7FCAF007403D8 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		32CA4F630368D1EE00C91783 /* Decoupled-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Decoupled-Prefix.pch"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Decoupled-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "Decoupled-Info.plist"; path = "../Decoupled-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		B173D7A01715F77000E3504C /* CDVBarcodeScanner.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CDVBarcodeScanner.mm; sourceTree = "<group>"; };
+		B173D7A11715F77000E3504C /* zxing-all-in-one.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "zxing-all-in-one.cpp"; sourceTree = "<group>"; };
+		B173D7A21715F77000E3504C /* zxing-all-in-one.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "zxing-all-in-one.h"; sourceTree = "<group>"; };
+		B173D7A51715F83400E3504C /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		B173D7A71715F83D00E3504C /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		B173D7A91715F84900E3504C /* libiconv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libiconv.dylib; path = usr/lib/libiconv.dylib; sourceTree = SDKROOT; };
 		D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x~iphone.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,6 +122,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B173D7AA1715F84900E3504C /* libiconv.dylib in Frameworks */,
+				B173D7A81715F83D00E3504C /* CoreVideo.framework in Frameworks */,
+				B173D7A61715F83400E3504C /* AssetsLibrary.framework in Frameworks */,
 				301BF552109A68D80062928A /* libCordova.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -172,6 +186,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				B173D7A91715F84900E3504C /* libiconv.dylib */,
+				B173D7A71715F83D00E3504C /* CoreVideo.framework */,
+				B173D7A51715F83400E3504C /* AssetsLibrary.framework */,
 				301BF56E109A69640062928A /* www */,
 				301BF52D109A57CC0062928A /* CordovaLib.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -243,6 +260,9 @@
 		307C750510C5A3420062BCA9 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				B173D7A01715F77000E3504C /* CDVBarcodeScanner.mm */,
+				B173D7A11715F77000E3504C /* zxing-all-in-one.cpp */,
+				B173D7A21715F77000E3504C /* zxing-all-in-one.h */,
 			);
 			name = Plugins;
 			path = Decoupled/Plugins;
@@ -410,6 +430,8 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
+				B173D7A31715F77000E3504C /* CDVBarcodeScanner.mm in Sources */,
+				B173D7A41715F77000E3504C /* zxing-all-in-one.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
