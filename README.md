@@ -16,7 +16,7 @@ To copy the files into the native projects
 Then, to run the project, open the Xcode project in XCode, and add the android project in Eclipse as an existing project.  
 
 # Init FH JS SDK
-To init the FH JS sdk you must update $fh.init inside [`index.html`](https://github.com/learnhenry/Decoupled-Client/blob/master/client/default/index.html)  
+To init the FH JS sdk you must update $fh.init inside [`index.html`](https://github.com/feedhenry-training/Decoupled-Client/blob/master/client/default/index.html)  
 
 The options you need to change are:  
 *host* - Host to use, i.e. https://apps.feedhenry.com  
