@@ -1,6 +1,8 @@
 //process.platform = "win32";
 var fs = require('fs'),
-path = require('path');
+    path = require('path'),
+    mustache = require('mustache');
+
 module.exports = function(grunt) {
   var packageJson = fs.readFileSync('./package.json');
   packageJson = JSON.parse(packageJson);
@@ -49,7 +51,7 @@ module.exports = function(grunt) {
     this.requiresConfig('build');
 
     var copyConfig = {};
-    
+
     switch(data.type){
       case "phone":
         // Phone only app, no tablet portion
@@ -87,10 +89,36 @@ module.exports = function(grunt) {
       copyConfig[self.data.dir] = this.data.js;
     }
 
+
     // run the copy task
-    _doCopy(copyConfig, done);
+    _doCopy(copyConfig, function() {
+      _renderIndexFiles(copyConfig);
+      done();
+    });
 
   });
+
+
+  /*
+    Renders the index.html files in each of the destinations
+    as a mustache template using parameters from package.json
+    @param copyConfig The same copyConfig passed to _doCopy
+  */
+  function _renderIndexFiles(copyConfig) {
+
+    var destinations = Object.keys(copyConfig);
+
+    destinations.forEach(function(dest) {
+      var indexFile = path.join(dest, "index.html");
+
+      if(fs.existsSync(indexFile)) {
+        fs.writeFileSync(indexFile, mustache.render(fs.readFileSync(indexFile, {
+          encoding: "utf-8"
+        }), packageJson.indexParams));
+      }
+    });
+
+  }
 
   /*
     Iterates over a list of packages, processing them individually
@@ -119,7 +147,6 @@ module.exports = function(grunt) {
     @param self A reference to current scope
    */
   function _processPackage(packageName, wwwSubDir, self, copyConfig) {
-    debugger;
     if (packageName==="" || packageName===null || packageName===undefined){
       return copyConfig;
     }
@@ -134,8 +161,8 @@ module.exports = function(grunt) {
     copyConfig[destination].push(packageGlob);
     return copyConfig;
   }
-  
-  
+
+
   function _doCopy(copyConfig, callback){
     var mkdir = "mkdir -p",
     cp = "cp -R";
@@ -172,12 +199,11 @@ module.exports = function(grunt) {
     for (var i=0; i<commands.length; i++) {
       commands[i] = (process.platform==="win32") ? commands[i].replace(/\//g, '\\') + flags : commands[i];
     }
-    
+
     // Different delimiter to chain commands in different build environments
     commands = (process.platform==="win32") ? commands.join(" & ") :  commands.join(" ; ");
-    
-    var exec = require('child_process').exec;
 
+    var exec = require('child_process').exec;
     exec(commands, function(error, stdout, stderr){
         if(error) {
           console.log(error || "");
