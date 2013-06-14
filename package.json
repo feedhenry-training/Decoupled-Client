@@ -8,7 +8,8 @@
     "grunt": "~0.4.1",
     "grunt-contrib-clean": "0.3.x",
     "grunt-contrib-copy": "0.3.x",
-    "mustache": "0.7.2"
+    "mustache": "0.7.2",
+    "underscore": "1.4.4"
   },
   "appid": "",
   "cloudHost": "",
