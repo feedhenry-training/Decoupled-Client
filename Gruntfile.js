@@ -128,7 +128,7 @@ module.exports = function(grunt) {
           return cb(err);
         }
         // Write out the file again as a rendered template.
-        fs.writeFile(indexFile, mustache.render(contents, params), fileOptions, cb);
+        fs.writeFile(indexFile, mustache.render(contents.toString(), params), fileOptions, cb);
       }
 
       fs.exists(indexFile, function(exists) {
