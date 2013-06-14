@@ -1,16 +1,18 @@
 //process.platform = "win32";
 var fs = require('fs'),
     path = require('path'),
-    mustache = require('mustache');
+    mustache = require('mustache'),
+    _ = require("underscore");
 
 module.exports = function(grunt) {
   var packageJson = fs.readFileSync('./package.json');
     packageJson = JSON.parse(packageJson),
-    indexParams = packageJson.indexParams;
+    defaultTplParams = packageJson.templateParams || {};
 
-  indexParams.appid = packageJson.appid;
-  indexParams.cloudHost = packageJson.cloudHost;
-
+  _.extend(defaultTplParams, {
+    appid: packageJson.appid,
+    cloudHost: packageJson.cloudHost
+  });
 
   var config = {
     ios : packageJson.ios,
@@ -97,7 +99,9 @@ module.exports = function(grunt) {
 
     // run the copy task
     _doCopy(copyConfig, function() {
-      _renderIndexFiles(copyConfig);
+      console.log(defaultTplParams);
+      console.log(data.templateParams);
+      _renderIndexFiles(copyConfig, _.extend({}, defaultTplParams, data.templateParams));
       done();
     });
 
@@ -108,8 +112,9 @@ module.exports = function(grunt) {
     Renders the index.html files in each of the destinations
     as a mustache template using parameters from package.json
     @param copyConfig The same copyConfig passed to _doCopy
+    @param params The parameters to pass to the template
   */
-  function _renderIndexFiles(copyConfig) {
+  function _renderIndexFiles(copyConfig, params) {
 
     var destinations = Object.keys(copyConfig);
 
@@ -119,7 +124,7 @@ module.exports = function(grunt) {
       if(fs.existsSync(indexFile)) {
         fs.writeFileSync(indexFile, mustache.render(fs.readFileSync(indexFile, {
           encoding: "utf-8"
-        }), indexParams));
+        }), params));
       }
     });
   }
