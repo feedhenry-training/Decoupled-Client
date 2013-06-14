@@ -2,7 +2,8 @@
 var fs = require('fs'),
     path = require('path'),
     mustache = require('mustache'),
-    _ = require("underscore");
+    async = require('async'),
+    _ = require('underscore');
 
 module.exports = function(grunt) {
   var packageJson = fs.readFileSync('./package.json');
@@ -99,10 +100,7 @@ module.exports = function(grunt) {
 
     // run the copy task
     _doCopy(copyConfig, function() {
-      console.log(defaultTplParams);
-      console.log(data.templateParams);
-      _renderIndexFiles(copyConfig, _.extend({}, defaultTplParams, data.templateParams));
-      done();
+      _renderIndexFiles(copyConfig, _.extend({}, defaultTplParams, data.templateParams), done);
     });
 
   });
@@ -114,19 +112,34 @@ module.exports = function(grunt) {
     @param copyConfig The same copyConfig passed to _doCopy
     @param params The parameters to pass to the template
   */
-  function _renderIndexFiles(copyConfig, params) {
+  function _renderIndexFiles(copyConfig, params, cb) {
+    var destinations = Object.keys(copyConfig),
+      fileOptions = {
+        encoding: "utf8"
+      };
 
-    var destinations = Object.keys(copyConfig);
-
-    destinations.forEach(function(dest) {
+    // Render each of the index files that were copied to their
+    // repective destinations.
+    async.each(destinations, function(dest, cb) {
       var indexFile = path.join(dest, "index.html");
 
-      if(fs.existsSync(indexFile)) {
-        fs.writeFileSync(indexFile, mustache.render(fs.readFileSync(indexFile, {
-          encoding: "utf-8"
-        }), params));
+      function writeRenderedFile(err, contents) {
+        if(err) {
+          return cb(err);
+        }
+        // Write out the file again as a rendered template.
+        fs.writeFile(indexFile, mustache.render(contents, params), fileOptions, cb);
       }
-    });
+
+      fs.exists(indexFile, function(exists) {
+        if(exists) {
+          fs.readFile(indexFile, fileOptions, writeRenderedFile);
+        }
+        else {
+          cb(new Error("Expected index.html file does not exist: " + indexFile + "\n"));
+        }
+      });
+    }, cb);
   }
 
   /*
