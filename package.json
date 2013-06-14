@@ -12,13 +12,17 @@
     "underscore": "1.4.4",
     "async": "0.2.9"
   },
+
   "appid": "",
-  "cloudHost": "",
-  "indexParams": {},
+  "appkey": "",
+  "host": "",
+
+  "templateParams": {},
   "ios" : {
     "packagesPhone": ["phone"],
     "packagesTablet" : [""],
     "packages" : [""],
+    "templateParams": {},
     "dir": "ios/www/",
     "type": "universal",
     "js" : "resources/cordova/ios/*"
@@ -27,6 +31,7 @@
     "packagesPhone" : ["phone"],
     "packagesTablet" : [""],
     "packages" : ["phone"],
+    "templateParams": {},
     "dir": "android/assets/www/",
     "type" : "universal",
     "js" : "resources/cordova/android/*"

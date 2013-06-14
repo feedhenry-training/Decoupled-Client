@@ -12,9 +12,9 @@
         <script>
           // Init the FH JS SDK
           $fh.init({
-            "host": "https://psdev.feedhenry.com",
-            "appid": "tW5zCC9ZBF5vdQWgd2En2pt4",
-            "appkey": "6c1c58dba74fc64d1ba56d3c954b268248ce7104",
+            "host": {{{ host }}},
+            "appid": {{ appid }},
+            "appkey": {{ appkey }},
             "mode" : "dev"
           }, function(res) {
             alert(JSON.stringify(res));

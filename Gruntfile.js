@@ -10,10 +10,7 @@ module.exports = function(grunt) {
     packageJson = JSON.parse(packageJson),
     defaultTplParams = packageJson.templateParams || {};
 
-  _.extend(defaultTplParams, {
-    appid: packageJson.appid,
-    cloudHost: packageJson.cloudHost
-  });
+  _.extend(defaultTplParams, _.pick(packageJson, "appid", "appkey", "host"));
 
   var config = {
     ios : packageJson.ios,
