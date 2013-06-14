@@ -5,7 +5,12 @@ var fs = require('fs'),
 
 module.exports = function(grunt) {
   var packageJson = fs.readFileSync('./package.json');
-  packageJson = JSON.parse(packageJson);
+    packageJson = JSON.parse(packageJson),
+    indexParams = packageJson.indexParams;
+
+  indexParams.appid = packageJson.appid;
+  indexParams.cloudHost = packageJson.cloudHost;
+
 
   var config = {
     ios : packageJson.ios,
@@ -114,10 +119,9 @@ module.exports = function(grunt) {
       if(fs.existsSync(indexFile)) {
         fs.writeFileSync(indexFile, mustache.render(fs.readFileSync(indexFile, {
           encoding: "utf-8"
-        }), packageJson.indexParams));
+        }), indexParams));
       }
     });
-
   }
 
   /*
